@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>練習</title>
+</head>
+
+<body>
+    <!--   使用prototype.js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/prototype/1/prototype.js"></script>
+    <!--   資料來源-->
+    <script src="./practice.js"></script>
+    <div>demo</div>
+    <div>展示的功能要有</div>
+    <div>動態生成 tr td 每五個 record 為一頁</div>
+    <div>要可以排序</div>
+    <div>checkBox 點選後另生成一個 json並送出</div>
+    <div>select動態生成</div>
+    <div>select選擇後能filter rtnList</div>
+    <div>radio button 選擇後 filter rtnList</div>
+    <div>parent page child page 展示</div>
+    <div>javascript 原生 ajax demo</div>
+
+    <form action="">
+        <input type="button" value="讀取資料" id="queryButton" name="queryButton">
+        <input type="button" value="產生table" id="createTableButton" name="queryButton">
+        <input type="button" value="清空table" id="clearTableButton" name="queryButton">
+        <input type="button" value="選取table資料" id="selectButton" name="queryButton">
+        <input type="button" value="動態生成下拉式選單" id="createLevelSelectButton" name="queryButton">
+        <input type="button" value="分頁功能" id="pageChangeButton" name="pageChangeButton">
+        <select name="level" id="levelSelect">
+            <option value="A">等級A</option>
+            <option value="B">等級B</option>
+        </select>
+
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>等級</td>
+                    <td>分數</td>
+                </tr>
+            </thead>
+            <tbody id="dataBody">
+
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </form>
+
+    <script>
+        //console.log($F('queryButton'));
+        //console.log(document.getElementById("queryButton").getAttribute("value"));
+        var tmp = $('queryButton');
+        //console.log(tmp);
+        // document.getElementById("myBtn").onclick = displayDate;
+
+        // prototype.js 註冊按扭 click 事件，並執行button.displayData
+        $('queryButton').observe(
+            'click',
+            function(element1) {
+                button.displayData(rtnList);
+            }
+
+        );
+
+        $('selectButton').observe(
+            'click',
+            function(element1) {
+                var rtnList = rtnList;
+                var checkedData = getCheckedBoxData(this.rtnList);
+                console.log(checkedData);
+            }
+
+        );
+
+        $('createTableButton').observe(
+            'click',
+            function(element1) {
+                var dataList = rtnList;
+
+                //var checkedData = 
+                generateTbodyData(dataList, 10);
+            }
+
+        );
+
+        $('clearTableButton').observe(
+            'click',
+            function(element1) {
+                clearTbody();
+            }
+
+        );
+
+        $('createLevelSelectButton').observe(
+            'click',
+            function(element1) {
+                console.log("createLevelSelectButton");
+                createDropDownElement("levelSelect", rtnList);
+            }
+
+        );
+
+        $('levelSelect').observe(
+            'change',
+            function(element1) {
+                //console.log(element1);
+                //console.log(element1.value);
+                console.log($F('levelSelect'));
+                filterLevel($F('levelSelect'), rtnList)
+            }
+
+        );
+
+
+        $('pageChangeButton').observe(
+            'click',
+            function(eventElement) {
+                console.log("pageChangeButton");
+                pageChangeData(rtnList, 10, 4);
+            }
+
+        );
+
+
+
+        //$("dataBody").update(createTrTd(3, ["id", "level", "ratio"]));
+        //$("dataBody").apppendChild(createTrTd(3, ["id", "level", "ratio"]));
+
+
+
+
+
+
+
+
+        //var tr = createTrTd(3, ["id", "level", "ratio"]);
+        //$("dataBody").insert(tr);
+
+        //var tr2 = createTrTd(3, ["id", "level", "ratio"]);
+
+        //$("dataBody").insert(tr2);
+
+
+
+        //document.getElementById("dataBody").appendChild(createTrTd(3, ["id", "level", "ratio"]));
+
+
+        //排序
+        newArr =
+            rtnList.sort(function(element1, element2) {
+                //return element1.ratio - element2.ratio;
+                if (element1.level < element2.level)
+                    return -1;
+                if (element1.level > element2.level)
+                    return 1;
+                return 0;
+
+            });
+
+
+        console.log(newArr);
+    </script>
+
+
+
+
+</body>
+
+</html>
