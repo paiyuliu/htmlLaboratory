@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/prototype/1/prototype.js"></script>
+
+<body>
+    <script>
+        new Ajax.Request('https://finance.google.com/finance/info', {
+            method: 'get',
+            parameters: {
+                client: "ig",
+                q: "TPE"
+            },
+            onSuccess: function(resp) {
+                // transport有三個response是responseXML
+                //跟responseText
+                //responseJSON (Server端記得要設定response的ContentType)
+                var response = resp.responseText || "no response text";
+                console.log(resp);
+                //alert("Success! \n\n" + response);
+            },
+            onFailure: function() {
+                alert('Something went wrong...');
+            }
+        });
+
+    </script>
+
+    <!--    https://coderanch.com/t/437845/java/Passing-JSON-Array-servlet-->
+    <script>
+        <!--
+        JSONArray arrayObj = new JSONArray();
+        arrayObj.add("MCA");
+        arrayObj.add("Amit Kumar");
+        arrayObj.add("19-12-1986");
+        arrayObj.add(24);
+        arrayObj.add("Scored");
+
+        var carAsJSON = jsonObj.stringify(car);
+        xmlHttp.open("POST", url, true);
+        xmlHttp.onreadystatechange = handleStateChange;
+        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttp.send(carAsJSON);
+        -->
+
+    </script>
+
+    <!--    https://gist.github.com/swapnil-webonise/6791811-->
+
+    <!--    https://stackoverflow.com/questions/13031617/post-array-of-values-to-java-servlet-->
+
+
+    <!--   http://hmkcode.com/java-servlet-send-receive-json-using-jquery-ajax/ -->
+
+    <!--    https://learn.jquery.com/using-jquery-core/avoid-conflicts-other-libraries/-->
+
+
+    <!--
+      https://stackoverflow.com/questions/9906199/how-can-i-make-an-prototype-ajax-request-with-an-array-of-values-as-a-parameter
+     parameters : {
+                //...
+                'campaigns[]' : campaign_ids
+            }
+     -->
+
+    <!--https://www.webdeveloper.com/forum/d/189925-resolved-send-associated-array-prototype-ajax-request-->
+
+
+    <!--
+    https://www.cnblogs.com/matthew-2013/p/3490654.html
+     後台 
+     String[] sTicketIds = request.getParameterValues("ticketId[]"); 
+     前台
+     var ticketId = new Array();
+     for(var i = 0; i < 5; i++) {
+              ticketId.push(i);
+     }
+     $.ajax({
+                type:"POST", //请求方式  
+                url:"./testJson", //请求路径  
+                cache: false,     
+                data:{//传参  
+                    "name":"zhang3",
+                    "ticketId":ticketId,    
+                },
+                dataType: 'json',   //返回值类型  
+                success:function(json){        
+                    alert(json[0].username+" " + json[0].password);    //弹出返回过来的List对象  
+                    alert(json[1].username+" " + json[1].password);    //弹出返回过来的List对象
+                }  
+            });  
+     -->
+
+    <!--     https://www.w3schools.com/js/js_ajax_http_send.asp-->
+
+    <!--    https://openhome.cc/Gossip/ServletJSP/RequestParameterHeader.html-->
+
+
+
+</body>
+
+</html>
